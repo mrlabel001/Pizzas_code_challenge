@@ -5,7 +5,7 @@ const PizzaList = () => {
     const [data, setData] = useState([]);
     
     useEffect(() => {
-        fetch("http://127.0.0.1:5000/Pizzas")
+        fetch("http://127.0.0.1:5000/pizzas")
         .then((res) => res.json())
         .then((data) => setData(data));
     }, []);
@@ -16,8 +16,8 @@ const PizzaList = () => {
             <ol>
                 {data.map((pizza) => (
                     <li key={pizza.id}>
-                        <li>{pizza.name}</li>
-                        <li>{pizza.ingredient}</li>
+                        {pizza.name}
+                        {pizza.ingredient}
                     </li>
                 ))}
             </ol>

@@ -16,6 +16,7 @@ const SingleRestaurant = () => {
             <p>{data.id}</p>
             <h2>{data.name}</h2>
             <p>{data.address}</p>
+            <button onClick={handleDelete}>Delete Restaurant</button>
         </div>
     )
 };
