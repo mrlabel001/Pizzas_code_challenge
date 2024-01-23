@@ -5,6 +5,7 @@ import RestaurantList from './RestaurantList';
 import SingleRestaurant from './SingleRestaurant';
 import Pizzas from './Pizzas'
 import PizzaList from './PizzaList';
+import DeleteRestaurant from './DeleteRestaurant';
 
 const App = () => {
   return (
@@ -14,9 +15,10 @@ const App = () => {
         <Restaurants/>
         <Pizzas/>
         </>} />
-        <Route path="/restaurants" exact element={<RestaurantList/>} />
-        <Route path="/pizzas" exact element={<PizzaList/>} />
+        <Route path="/restaurants" element={<RestaurantList/>} />
+        <Route path="/pizzas" element={<PizzaList/>} />
         <Route path="/restaurants/:id" element={<SingleRestaurant/>} />
+        <Route path='/restaurants/:id/delete' element={<DeleteRestaurant/>}/>
         </Routes>
     </Router>
   );

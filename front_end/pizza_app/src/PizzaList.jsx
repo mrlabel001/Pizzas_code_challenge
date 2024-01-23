@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
+
 
 const PizzaList = () => {
     const [data, setData] = useState([]);
@@ -16,8 +16,8 @@ const PizzaList = () => {
             <ol>
                 {data.map((pizza) => (
                     <li key={pizza.id}>
-                        {pizza.name}
-                        {pizza.ingredient}
+                        <p>{pizza.name}</p>
+                        <p>{pizza.ingredients}</p>
                     </li>
                 ))}
             </ol>
