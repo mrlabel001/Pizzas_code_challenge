@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import DeleteRestaurant from './DeleteRestaurant';
+import AddPizzaToRestaurant from './AddPizzaToRestaurant';
 
 const SingleRestaurant = () => {
   const [data, setData] = useState(null);
@@ -25,7 +25,7 @@ const SingleRestaurant = () => {
           <p>{data.id}</p>
           <p>{data.name}</p>
           <p>{data.address}</p>
-          <DeleteRestaurant />
+          <AddPizzaToRestaurant restaurantId={id} />
         </div>
       )}
     </div>
