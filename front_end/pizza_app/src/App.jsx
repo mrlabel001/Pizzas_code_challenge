@@ -1,20 +1,19 @@
-import { useState } from 'react';
-import Pizzas from './Pizzas';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Restaurants from './Restaurants';
-import RestaurantPizza from './RestaurantPizza';
+import RestaurantList from './RestaurantList';
+import SingleRestaurant from './SingleRestaurant';
 
-
-
-function App() {
-
+const App = () => {
   return (
-    <>
-   <h1>Pizza Inn</h1>
-   <div><Pizzas/></div>
-   <div><Restaurants/></div>
-   <div><RestaurantPizza/></div>
-    </>
-  )
+    <Router>
+      <Switch>
+        <Route path="/" exact component={Restaurants} />
+        <Route path="/restaurants" exact component={RestaurantList} />
+        <Route path="/restaurants/:id" component={SingleRestaurant} />
+      </Switch>
+    </Router>
+  );
 }
 
-export default App
+export default App;
