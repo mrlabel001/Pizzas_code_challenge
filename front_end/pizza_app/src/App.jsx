@@ -1,30 +1,28 @@
 import React from 'react';
+import HomePage from './HomePage';
+import './index.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Restaurants from './Restaurants';
-import RestaurantList from './RestaurantList';
-import SingleRestaurant from './SingleRestaurant';
+import NavBar from './NavBar';
 import Pizzas from './Pizzas';
-import PizzaList from './PizzaList';
-import DeleteRestaurant from './DeleteRestaurant';
-import AddPizzaToRestaurant from './AddPizzaToRestaurant';
+import Restaurants from './Restaurants';
+import RestaurantPizzas from './RestaurantPizzas';
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<>
-          <Restaurants />
-          <Pizzas />
-        </>} />
-        <Route path="/restaurants" element={<RestaurantList />} />
-        <Route path="/pizzas" element={<PizzaList />} />
-        <Route path="/restaurants/:id" element={<SingleRestaurant />} />
-        <Route path="/restaurants/:id/delete" element={<DeleteRestaurant />} />
-        <Route path="/restaurants/:id/add-pizza" element={<AddPizzaToRestaurant />} />
-        <Route path="/restaurant_pizzas" element={<AddPizzaToRestaurant />} />
-      </Routes>
-    </Router>
+    <div>
+      <h1>Pizza inn</h1>
+      <Router>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/pizzas" element={<Pizzas />} />
+          <Route path="/restaurants" element={<Restaurants />} />
+          <Route path="/restaurant-pizzas" element={<RestaurantPizzas />} />
+        </Routes>
+      </Router>
+    </div>
   );
-}
+};
 
 export default App;
+
