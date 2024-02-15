@@ -91,6 +91,51 @@ def pizzas():
 
     return jsonify(pizza_list)
 
+@app.route('/pizzas/<int:restaurant_id>', methods=['GET'])
+def get_pizza_by_id(pizza_id):
+    pizza = Pizza.query.get(pizza_id)
+    if pizza:
+        return jsonify({
+            'id': pizza.id,
+            'name': pizza.name,
+            'ingredients': pizza.ingredients
+        }), 200
+    else:
+        return jsonify({'error': 'Pizza not found'}), 404
+
+# Route to update a pizza by its ID
+@app.route('/pizzas/<int:pizza_id>', methods=['PUT'])
+def update_pizza(pizza_id):
+    data = request.json
+    pizza = Pizza.query.get(pizza_id)
+    if pizza:
+        pizza.name = data.get('name', pizza.name)
+        pizza.ingredient = data.get('ingredient', pizza.ingredient)
+        db.session.commit()
+        return jsonify({'message': 'pizza updated successfully'}), 200
+    else:
+        return jsonify({'error': 'pizza not found'}), 404
+
+# Route to delete a pizza by its ID
+@app.route('/pizzas/<int:pizza_id>', methods=['DELETE'])
+def delete_pizza(pizza_id):
+    pizza = Pizza.query.get(pizza_id)
+    if pizza:
+        db.session.delete(pizza)
+        db.session.commit()
+        return jsonify({'message': 'pizza deleted successfully'}), 200
+    else:
+        return jsonify({'error': 'pizza not found'}), 404
+
+# Route to append a new pizza
+@app.route('/pizzas', methods=['POST'])
+def add_pizza():
+    data = request.json
+    new_pizza = pizza(name=data['name'], ingredient=data['ingredient'])
+    db.session.add(new_pizza)
+    db.session.commit()
+    return jsonify({'message': 'pizza added successfully'}), 201
+
 @app.route('/restaurant_pizzas')
 def restaurant_pizzas():
     restaurant_pizzas = RestaurantPizza.query.all()
@@ -104,8 +149,6 @@ def restaurant_pizzas():
         }
         rest_pizza_list.append(rest_dict)
     return jsonify(rest_pizza_list)
-
-
 
 if __name__ == '__main__':
     app.run(port=5555)
